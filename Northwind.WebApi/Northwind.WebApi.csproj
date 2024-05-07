@@ -8,7 +8,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<Using Static="true" Include="System.Console"/>
+		<Using Static="true" Include="System.Console" />
 	</ItemGroup>
 	
   <ItemGroup>

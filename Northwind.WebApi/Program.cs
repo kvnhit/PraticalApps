@@ -1,7 +1,12 @@
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Northwind.EntityModels; //To use AddNorthwindContext method
+using Microsoft.Extensions.Caching.Memory;
+using Northwind.WebApi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<IMemoryCache>(
+    new MemoryCache(new MemoryCacheOptions()));
 
 // Add services to the container.
 builder.Services.AddNorthwindContext();
@@ -28,6 +33,8 @@ builder.Services.AddControllers(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 var app = builder.Build();
 
